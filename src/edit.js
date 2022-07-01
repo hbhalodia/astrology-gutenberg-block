@@ -32,7 +32,22 @@ import { SelectControl, PanelBody } from '@wordpress/components';
  */
 export default function Edit( { attributes, setAttributes } ) {
 
-	const { astroSign, astroDuration, astroCategory, astroDescription } = attributes;
+	const { astroSign, astroDuration, astroCategory, astroDescription, astroZodiacIcon } = attributes;
+
+	const zodiacIconsArray = {
+		aries      : '&#9800;',
+		taurus     : '&#9801;',
+		gemini     : '&#9802;',
+		cancer     : '&#9803;',
+		leo        : '&#9804;',
+		virgo      : '&#9805;',
+		libra      : '&#9806;',
+		scorpio    : '&#9807;',
+		sagittarius: '&#9808;',
+		capricorn  : '&#9809;',
+		aquarius   : '&#9810;',
+		pisces     : '&#9811;',
+	}
 
 	const astroSignArray = {
 		aries      : 'Aries',
@@ -138,6 +153,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const onChangeHoroscoperZodiac = ( newValue ) => {
 		setAttributes( { astroSign: newValue } );
+		setAttributes( { astroZodiacIcon: zodiacIconsArray[ newValue ] } );
 		fetchHoroscopeDetails( newValue, astroDuration, astroCategory );
 	};
 
@@ -181,10 +197,9 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			<div className='container'>
 				<>
-					<h1 className='horoscopeHeading'>{ astroSignArray[ astroSign ] || 'Select Suitable Zodiac' }</h1>
-					<h3 className='categoryName'>{ astroCategoryArray[ astroCategory ] || 'Select Suitable Category' }</h3>
-					<h4 className='astroDuration'>{ astroDurationArray[ astroDuration] || 'Select Suitable Duration' }</h4>
-					<p className='HoroscopeDescription'>{ astroDescription }</p>
+					<h1 className='horoscopeHeading'>{ astroZodiacIcon || '' } { astroSignArray[ astroSign ] || 'Select Suitable Zodiac' }</h1>
+					<h3 className='horoscopeCategoryName'>{ astroCategoryArray[ astroCategory ] || 'Select Suitable Category' }</h3><h4 className='horoscopeDuration'>{ astroDurationArray[ astroDuration] || 'Select Suitable Duration' }</h4>
+					<p className='horoscopeDescription'>{ astroDescription }</p>
 				</>
 			</div>
 		</>
