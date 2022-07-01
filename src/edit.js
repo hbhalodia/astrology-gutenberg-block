@@ -5,13 +5,12 @@
  */
 import { __ } from '@wordpress/i18n';
 
+import axios from 'axios';
+
 /**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#inspectorcontrols
  */
-import { useBlockProps } from '@wordpress/block-editor';
+ import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -20,6 +19,8 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+
+import { SelectControl, PanelBody } from '@wordpress/components';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -31,16 +32,161 @@ import './editor.scss';
  */
 export default function Edit( { attributes, setAttributes } ) {
 
-	const { astroSign, astroDuration, astroCategory } = attributes;
+	const { astroSign, astroDuration, astroCategory, astroDescription } = attributes;
 
-	const astroSignArray = [
-	];
+	const astroSignArray = {
+		aries      : 'Aries',
+		taurus     : 'Taurus',
+		gemini     : 'Gemini',
+		cancer     : 'Cancer',
+		leo        : 'Leo',
+		virgo      : 'Virgo',
+		libra      : 'Libra',
+		scorpio    : 'Scorpio',
+		sagittarius: 'Sagittarius',
+		capricorn  : 'Capricorn',
+		aquarius   : 'Aquarius',
+		pisces     : 'Pisces',
+	};
 
-	const astroDurationArray = [
+	const astroDurationArray = {
+		today  : 'Daily',
+		weekly : 'Weekly',
+		monthly: 'Monthly',
+	};
 
-	];
+	const astroCategoryArray = {
+		nocategory: 'Deafult',
+		career    : 'Career',
+		love      : 'Love'
+	};
 
-	const astroCategoryArray = [
+	const getSelectControlOption = ( data ) => {
+		const selectControlOptions = [];
 
-	];
+		selectControlOptions.push(
+			{
+				label: 'Select',
+				value: ''
+			}
+		);
+
+		for ( const key in data ) {
+			selectControlOptions.push(
+				{
+					label: data[ key ],
+					value: key
+				}
+			);
+		}
+
+		return selectControlOptions;
+	};
+
+	function fetchHoroscopeDetails( astroSign, astroDuration, astroCategory ) {
+		console.log( 'Yes' );
+		try {
+			let urlParam = '';
+
+			if (
+				( 'monthly' === astroDuration || 'weekly' === astroDuration )
+				&& ( 'career' === astroCategory )
+			) {
+				urlParam = `horoscope-${astroCategory}-${astroDuration}/${astroSign}/`;
+			} else if ( 'today' === astroDuration && 'career' === astroCategory ) {
+				urlParam = `horoscope-${astroCategory}/${astroSign}/${astroDuration}/`;
+			}
+
+			if (
+				( 'monthly' === astroDuration || 'weekly' === astroDuration )
+				&& ( 'love' === astroCategory )
+			) {
+				urlParam = `horoscope-${astroCategory}-${astroDuration}/${astroSign}/couple/`;
+			} else if ( 'today' === astroDuration && 'love' === astroCategory ) {
+				urlParam = `horoscope-${astroCategory}/${astroSign}/today/`;
+			}
+
+			if (
+				( 'monthly' === astroDuration || 'weekly' === astroDuration )
+				&& ( 'nocategory' === astroCategory )
+			) {
+				urlParam = `horoscope-${astroDuration}/${astroSign}/`;
+			} else if ( 'today' === astroDuration && 'nocategory' === astroCategory ) {
+				urlParam = `horoscope/${astroSign}/today/`;
+			}
+
+			const options = {
+				method: 'GET',
+				url: 'https://astro-daily-live-horoscope.p.rapidapi.com/' + urlParam,
+				headers: {
+					'X-RapidAPI-Key': '81a01fa739msh30aff6efa9715e7p1d78c5jsn08e71a376f0c',
+					'X-RapidAPI-Host': 'astro-daily-live-horoscope.p.rapidapi.com'
+				}
+			};
+
+			axios.request( options ).then( function ( response ) {
+				let newVal = response.data[ astroSign ];
+				setAttributes( { astroDescription: newVal } );
+			} ).catch(function ( error ) {
+				console.log( error );
+				setAttributes( { astroDescription: 'Something Went Wrong..' } );
+			} );
+		} catch (error) {
+			console.log( error );
+		}
+	}
+
+	const onChangeHoroscoperZodiac = ( newValue ) => {
+		setAttributes( { astroSign: newValue } );
+		fetchHoroscopeDetails( newValue, astroDuration, astroCategory );
+	};
+
+	const onChangeHoroscopeDuration = ( newValue ) => {
+		setAttributes( { astroDuration: newValue } );
+		fetchHoroscopeDetails( astroSign, newValue, astroCategory );
+	};
+
+	const onChangeHoroscopeCategory = ( newValue ) => {
+		setAttributes( { astroCategory: newValue } );
+		fetchHoroscopeDetails( astroSign, astroDuration, newValue );
+	};
+
+	return (
+		<>
+			<InspectorControls>
+				<PanelBody title={ __( 'Block Settings', 'learn-gutenberg' ) }>
+
+					<SelectControl
+						label="Horoscope Zodiac Sign"
+						value={ astroSign }
+						options={ getSelectControlOption( astroSignArray ) }
+						onChange={ onChangeHoroscoperZodiac }
+					/>
+
+					<SelectControl
+						label="Horoscope Duration"
+						value={ astroDuration }
+						options={ getSelectControlOption( astroDurationArray ) }
+						onChange={ onChangeHoroscopeDuration }
+					/>
+
+					<SelectControl
+						label="Horoscope Category"
+						value={ astroCategory }
+						options={ getSelectControlOption( astroCategoryArray ) }
+						onChange={ onChangeHoroscopeCategory }
+					/>
+				</PanelBody>
+			</InspectorControls>
+
+			<div className='container'>
+				<>
+					<h1 className='horoscopeHeading'>{ astroSignArray[ astroSign ] || 'Select Suitable Zodiac' }</h1>
+					<h3 className='categoryName'>{ astroCategoryArray[ astroCategory ] || 'Select Suitable Category' }</h3>
+					<h4 className='astroDuration'>{ astroDurationArray[ astroDuration] || 'Select Suitable Duration' }</h4>
+					<p className='HoroscopeDescription'>{ astroDescription }</p>
+				</>
+			</div>
+		</>
+	)
 }
