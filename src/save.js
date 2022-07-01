@@ -22,6 +22,19 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
-	return null;
+export default function save( props ) {
+	const { attributes } = props;
+	const { astroSign, astroDuration, astroCategory, astroDescription } = attributes;
+
+
+	return (
+		<>
+			<div className='container'>
+				<h1 className='horoscopeHeading'>{ astroSign || 'Select Suitable Zodiac' }</h1>
+				<h3 className='categoryName'>{ astroCategory || 'Select Suitable Category' }</h3>
+				<h4 className='astroDuration'>{ astroDuration || 'Select Suitable Duration' }</h4>
+				<p className='HoroscopeDescription'>{ astroDescription }</p>
+			</div>
+		</>
+	);
 }
