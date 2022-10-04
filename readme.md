@@ -12,3 +12,6 @@
 
 ### Frontend
 ![Frontend Image](images/frontend.png)
+
+### Meta Fields
+![Meta Fields](images/gutenbergMeta.png)
