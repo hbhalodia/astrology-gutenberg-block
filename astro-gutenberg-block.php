@@ -13,6 +13,9 @@
  * @package           create-block
  */
 
+define( 'GUTENBERG_LEARNING_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+define( 'GUTENBERG_LEARNING_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
+
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
@@ -24,3 +27,36 @@ function create_block_astro_gutenberg_block_block_init() {
 	register_block_type( __DIR__ . '/build' );
 }
 add_action( 'init', 'create_block_astro_gutenberg_block_block_init' );
+
+/**
+ * Registering the custom metas.
+ *
+ * @return void
+ */
+function register_custom_meta() {
+	register_post_meta( 'post', 'designation_title', array(
+		'show_in_rest'      => true,
+		'type'              => 'string',
+		'single'            => true,
+		'auth_callback'     => function() {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
+}
+add_action( 'init', 'register_custom_meta'	, 10 );
+
+/**
+ * Add Block scripts.
+ *
+ * @return void
+ */
+function editor_scripts() {
+	$editor_dependency = array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-core-data', 'wp-edit-post', 'wp-plugins', 'wp-rich-text' );
+	wp_enqueue_script(
+		'test-meta-fields',
+		GUTENBERG_LEARNING_URL . '/build/index.js',
+		$editor_dependency,
+		filemtime( GUTENBERG_LEARNING_PATH . '/build/index.js' )
+	);
+}
+add_action( 'enqueue_block_editor_assets','editor_scripts' );
