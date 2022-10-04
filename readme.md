@@ -8,7 +8,7 @@
 
 ## Images
 ### Editor
-![Editor Image](https://github.com/hbhalodia/astrology-gutenberg-block/tree/master/images/editor.png)
+![Editor Image](/images/editor.png)
 
 ### Frontend
-![Frontend Image](https://github.com/hbhalodia/astrology-gutenberg-block/tree/master/images/frontend.png)
+![Frontend Image](images/frontend.png)
