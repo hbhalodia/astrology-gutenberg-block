@@ -42,8 +42,16 @@ function register_custom_meta() {
 			return current_user_can( 'edit_posts' );
 		}
 	) );
+	register_post_meta( 'post', 'astro_sign_image', array(
+		'show_in_rest'      => true,
+		'type'              => 'number',
+		'single'            => true,
+		'auth_callback'     => function() {
+			return current_user_can( 'edit_posts' );
+		}
+	) );
 }
-add_action( 'init', 'register_custom_meta'	, 10 );
+add_action( 'init', 'register_custom_meta' , 10 );
 
 /**
  * Add Block scripts.

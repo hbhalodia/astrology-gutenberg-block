@@ -38,3 +38,4 @@ registerBlockType( metadata.name, {
 } );
 
 import "./meta/AstroSign";
+import "./meta/AstroSignImage";
