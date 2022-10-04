@@ -34,7 +34,7 @@ add_action( 'init', 'create_block_astro_gutenberg_block_block_init' );
  * @return void
  */
 function register_custom_meta() {
-	register_post_meta( 'post', 'designation_title', array(
+	register_post_meta( 'post', 'astro_sign', array(
 		'show_in_rest'      => true,
 		'type'              => 'string',
 		'single'            => true,

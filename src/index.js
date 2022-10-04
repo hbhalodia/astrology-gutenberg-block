@@ -37,4 +37,4 @@ registerBlockType( metadata.name, {
 	save: Save,
 } );
 
-import "./meta/DesignationTitle";
+import "./meta/AstroSign";

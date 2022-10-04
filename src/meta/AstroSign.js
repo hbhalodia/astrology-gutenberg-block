@@ -5,11 +5,11 @@ const { __ } = wp.i18n;
 const { TextControl } = wp.components;
 const { useSelect, useDispatch } = wp.data;
 
-const RenderDesginationTitleMeta = () => {
+const RenderAstroSignMeta = () => {
 
-	const { desginationTitle } = useSelect( ( select ) => {
+	const { AstroSign } = useSelect( ( select ) => {
 		return {
-			desginationTitle: select('core/editor').getEditedPostAttribute( 'meta' )['designation_title'],
+			AstroSign: select('core/editor').getEditedPostAttribute( 'meta' )['astro_sign'],
 		}
 	} );
 
@@ -19,29 +19,29 @@ const RenderDesginationTitleMeta = () => {
 	return (
 		<>
 			<TextControl
-				value={ desginationTitle }
-				onChange={ ( value ) => editPost( { meta: { designation_title: value } } ) }
+				value={ AstroSign }
+				onChange={ ( value ) => editPost( { meta: { astro_sign: value } } ) }
 			/>
 		</>
 	)
 }
 
-const PluginDesginationTitle = () => (
+const PluginAstroSign = () => (
 	// Create sidebar's (drop-down) panel.
 	<PluginDocumentSettingPanel
-		name="desgination_title"
-		title={ __( 'Designantion Title', 'rtcamp-features' ) }
-		className="desgination-title"
+		name="astro_sign"
+		title={ __( 'Astro Sign', 'astro-gutenberg-block' ) }
+		className="astro-sign"
 	>
-		<RenderDesginationTitleMeta />
+		<RenderAstroSignMeta />
 	</PluginDocumentSettingPanel>
 );
 
 // Register sidebar's (drop-down) panel.
 registerPlugin(
-	'plugin-designation-title',
+	'plugin-astro-sign',
 	{
-		render: PluginDesginationTitle,
+		render: PluginAstroSign,
 		icon: null
 	}
 );
