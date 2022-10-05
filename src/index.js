@@ -37,5 +37,9 @@ registerBlockType( metadata.name, {
 	save: Save,
 } );
 
+// Import Metas using Gutenberg.
 import "./meta/AstroSign";
 import "./meta/AstroSignImage";
+
+// Add filters for coreblocks.
+import "./coreBlockFiltersExample/index";
