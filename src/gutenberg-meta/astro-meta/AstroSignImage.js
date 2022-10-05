@@ -1,9 +1,16 @@
-const { registerPlugin } = wp.plugins;
-const { PluginDocumentSettingPanel } = wp.editPost;
-const { __ } = wp.i18n;
-const { Button, Spinner } = wp.components;
-const { useSelect, useDispatch } = wp.data;
-const { MediaUpload, MediaUploadCheck } = wp.editor;
+// const { registerPlugin } = wp.plugins;
+// const { PluginDocumentSettingPanel } = wp.editPost;
+// const { __ } = wp.i18n;
+// const { Button, Spinner } = wp.components;
+// const { useSelect, useDispatch } = wp.data;
+// const { MediaUpload, MediaUploadCheck } = wp.editor;
+
+import { registerPlugin } from "@wordpress/plugins";
+import { PluginDocumentSettingPanel } from "@wordpress/edit-post";
+import { __ } from "@wordpress/i18n";
+import { useSelect, useDispatch } from "@wordpress/data";
+import { Button, Spinner } from "@wordpress/components";
+import { MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
 
 const RenderAstroSignImageMeta = () => {
 

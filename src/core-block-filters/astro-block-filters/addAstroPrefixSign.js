@@ -1,5 +1,7 @@
-const { createHigherOrderComponent } = wp.compose;
-const { Fragment } = wp.element;
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { Fragment } from '@wordpress/element'
+// const { createHigherOrderComponent } = wp.compose;
+// const { Fragment } = wp.element;
 
 export default createHigherOrderComponent( ( Block ) => {
 

@@ -1,8 +1,14 @@
-const { __ } = wp.i18n;
-const { PanelBody, ToggleControl, TextControl } = wp.components;
-const { InspectorControls } = wp.blockEditor;
-const { Fragment } = wp.element;
-const { createHigherOrderComponent } = wp.compose;
+// const { __ } = wp.i18n;
+// const { PanelBody, ToggleControl, TextControl } = wp.components;
+// const { InspectorControls } = wp.blockEditor;
+// const { Fragment } = wp.element;
+// const { createHigherOrderComponent } = wp.compose;
+
+import { __ } from "@wordpress/i18n";
+import { PanelBody, ToggleControl, TextControl } from "@wordpress/components";
+import { InspectorControls } from "@wordpress/block-editor";
+import { Fragment } from "@wordpress/element";
+import { createHigherOrderComponent } from '@wordpress/compose';
 
 export default createHigherOrderComponent( ( BlockEdit ) => {
 

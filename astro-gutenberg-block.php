@@ -24,7 +24,7 @@ define( 'GUTENBERG_LEARNING_URL', untrailingslashit( plugin_dir_url( __FILE__ ) 
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function create_block_astro_gutenberg_block_block_init() {
-	register_block_type( __DIR__ . '/build' );
+	register_block_type( __DIR__ . '/build/astro-gutenberg-block' );
 }
 add_action( 'init', 'create_block_astro_gutenberg_block_block_init' );
 
@@ -62,10 +62,17 @@ function editor_scripts() {
 	$editor_dependency = array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-core-data', 'wp-edit-post', 'wp-plugins', 'wp-rich-text', 'wp-hooks' );
 
 	wp_enqueue_script(
-		'test-meta-fields',
-		GUTENBERG_LEARNING_URL . '/build/index.js',
+		'gutenberg-meta',
+		GUTENBERG_LEARNING_URL . '/build/astro-gutenberg-block/index.js',
 		$editor_dependency,
-		filemtime( GUTENBERG_LEARNING_PATH . '/build/index.js' )
+		filemtime( GUTENBERG_LEARNING_PATH . '/build/astro-gutenberg-block/index.js' )
+	);
+
+	wp_enqueue_script(
+		'core-block-filters',
+		GUTENBERG_LEARNING_URL . '/build/astro-gutenberg-block/index.js',
+		$editor_dependency,
+		filemtime( GUTENBERG_LEARNING_PATH . '/build/astro-gutenberg-block/index.js' )
 	);
 }
-add_action( 'enqueue_block_editor_assets','editor_scripts' );
+// add_action( 'enqueue_block_editor_assets','editor_scripts' );
