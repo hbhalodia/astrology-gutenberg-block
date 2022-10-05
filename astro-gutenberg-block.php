@@ -59,7 +59,8 @@ add_action( 'init', 'register_custom_meta' , 10 );
  * @return void
  */
 function editor_scripts() {
-	$editor_dependency = array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-core-data', 'wp-edit-post', 'wp-plugins', 'wp-rich-text' );
+	$editor_dependency = array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-core-data', 'wp-edit-post', 'wp-plugins', 'wp-rich-text', 'wp-hooks' );
+
 	wp_enqueue_script(
 		'test-meta-fields',
 		GUTENBERG_LEARNING_URL . '/build/index.js',
