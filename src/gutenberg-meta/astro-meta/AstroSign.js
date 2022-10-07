@@ -1,10 +1,3 @@
-// Register the MetaField text to.
-// const { registerPlugin } = wp.plugins;
-// const { PluginDocumentSettingPanel } = wp.editPost;
-// const { __ } = wp.i18n;
-// const { TextControl } = wp.components;
-// const { useSelect, useDispatch } = wp.data;
-
 import { registerPlugin } from "@wordpress/plugins";
 import { PluginDocumentSettingPanel } from "@wordpress/edit-post";
 import { __ } from "@wordpress/i18n";
