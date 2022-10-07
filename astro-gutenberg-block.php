@@ -61,27 +61,3 @@ function register_custom_meta() {
 	) );
 }
 add_action( 'init', 'register_custom_meta' , 10 );
-
-/**
- * Add Block scripts.
- *
- * @return void
- */
-function editor_scripts() {
-	$editor_dependency = array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-components', 'wp-data', 'wp-core-data', 'wp-edit-post', 'wp-plugins', 'wp-rich-text', 'wp-hooks' );
-
-	wp_enqueue_script(
-		'gutenberg-meta',
-		GUTENBERG_LEARNING_URL . '/build/astro-gutenberg-block/index.js',
-		$editor_dependency,
-		filemtime( GUTENBERG_LEARNING_PATH . '/build/astro-gutenberg-block/index.js' )
-	);
-
-	wp_enqueue_script(
-		'core-block-filters',
-		GUTENBERG_LEARNING_URL . '/build/astro-gutenberg-block/index.js',
-		$editor_dependency,
-		filemtime( GUTENBERG_LEARNING_PATH . '/build/astro-gutenberg-block/index.js' )
-	);
-}
-// add_action( 'enqueue_block_editor_assets','editor_scripts' );
