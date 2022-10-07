@@ -6,12 +6,34 @@
 - On any change to value block will hit the respective API provided by the rapid API platform and fetch the results and show pn editor + frontend ( post-published ) view.
 
 
+## Features
+1. Custom Astro Block
+2. Meta Fields
+   1. Astro Text Meta
+   2. Astro Image Meta
+   3. Astro Category Autocomplete Meta
+3. CoreBlock Filter ( core/paragraph ) to add prefix as Astro text meta ( only to editor side ).
+
 ## Images
 ### Editor
+- Editor Image
+
 ![Editor Image](/images/editor.png)
 
 ### Frontend
+- Frontend Image
+
 ![Frontend Image](images/frontend.png)
 
 ### Meta Fields
-![Meta Fields](images/gutenbergMeta.png)
+- Text Control Meta
+
+![Meta Fields](images/AstroText.png)
+
+- Media Upload Meta
+
+![AstroMediaUpload](images/AstroImage.png)
+
+- Astro Autocomplete Meta Video
+
+![AstroAutocomplete](images/AstroImage.png)
