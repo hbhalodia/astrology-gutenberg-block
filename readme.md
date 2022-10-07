@@ -34,6 +34,4 @@
 
 ![AstroMediaUpload](images/AstroImage.png)
 
-- Astro Autocomplete Meta Video
-
-![AstroAutocomplete](images/AstroImage.png)
+- Astro Autocomplete Meta Video - https://watch.screencastify.com/v/xKqvMgteL1SPUkpOYrCn
