@@ -25,6 +25,7 @@ define( 'GUTENBERG_LEARNING_URL', untrailingslashit( plugin_dir_url( __FILE__ ) 
  */
 function create_block_astro_gutenberg_block_block_init() {
 	register_block_type( __DIR__ . '/build/astro-gutenberg-block' );
+	register_block_type( __DIR__ . '/build/single-post-block' );
 }
 add_action( 'init', 'create_block_astro_gutenberg_block_block_init' );
 
