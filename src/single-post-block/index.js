@@ -13,6 +13,7 @@ import { registerBlockType } from '@wordpress/blocks';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './style.scss';
+import './editor.scss';
 
 /**
  * Internal dependencies
@@ -26,6 +27,8 @@ import metadata from './block.json';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( metadata.name, {
+	title: metadata.title,
+	attributes: metadata.attributes,
 	/**
 	 * @see ./edit.js
 	 */
@@ -33,11 +36,7 @@ registerBlockType( metadata.name, {
 	/**
 	 * @see ./save.js
 	 */
-	save: ( ( props ) => {
-		return (
-			<>
-				<div>Here would be the saved content.</div>
-			</>
-		);
+	save: ( () => {
+		return null;
 	} ),
 } );

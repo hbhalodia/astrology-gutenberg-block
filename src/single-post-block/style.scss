@@ -1,0 +1,35 @@
+.single-block-container {
+	display: flex;
+	justify-content: space-between;
+	border: 2px solid blue;
+}
+
+.column {
+	padding: 10px;
+}
+
+div.single-block-container.left-image {
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+}
+
+div.div-border-left {
+	border-left: 2px solid gray;
+}
+
+div.div-border-right {
+	border-right: 2px solid gray;
+}
+
+img.single-block-image-img {
+	height: 200px !important;
+	width: 200px !important;
+}
+
+.do-not-show {
+	display: none;
+}
+
+h2.post-title {
+	margin: 0;
+}
