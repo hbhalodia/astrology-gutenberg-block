@@ -9,11 +9,12 @@
 ## Features
 1. Custom Astro Block
 2. Custom Single Post Block, to display the post with feature image, title, excerpt and date with hide facility from editor.
-3. Meta Fields
+3. InnerBlocks
+4. Meta Fields
    1. Astro Text Meta
    2. Astro Image Meta
    3. Astro Category Autocomplete Meta
-4. CoreBlock Filter ( core/paragraph ) to add prefix as Astro text meta ( only to editor side ).
+5. CoreBlock Filter ( core/paragraph ) to add prefix as Astro text meta ( only to editor side ).
 
 ## Images
 ### Editor
@@ -40,3 +41,7 @@
 
 ## Single Post Block
 - Video - https://watch.screencastify.com/v/7VBrDbglzzMVe5wR4mmz
+
+
+##InnerBlocks Concepts
+![InnerBlocks](image/InnerBlocks.png)
