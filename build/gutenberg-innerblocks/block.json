@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "create-block/gutenberg-innerblocks",
+  "version": "0.1.0",
+  "title": "InnerBlock Example",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "Block is used to shw how InnerBlocks is used.",
+  "supports": {
+    "className": true
+  },
+  "textdomain": "astro-gutenberg-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
